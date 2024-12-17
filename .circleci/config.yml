@@ -7,7 +7,9 @@ jobs:
     steps:
       - run:
           name: Print hello world
-          command: echo git log -1 --pretty=%B
+          command: |
+              echo "Son commit mesajı:"
+              git log -1 --pretty=%B
 
 workflows:
   version: 2
