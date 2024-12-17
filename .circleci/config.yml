@@ -8,9 +8,7 @@ jobs:
       - checkout
       - run:
           name: Print hello world
-          command: |
-              echo "Son commit mesajı:"
-              git log -1 --pretty=%B
+          command: git log
 
 workflows:
   version: 2
