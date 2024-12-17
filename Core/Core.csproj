@@ -8,8 +8,10 @@
 
   <ItemGroup>
     <Folder Include="ExceptionHandling\GrpcHandler\" />
-    <Folder Include="ExceptionHandling\RestAPIHandler\" />
-    <Folder Include="RestAPI\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
   </ItemGroup>
 
 </Project>
