@@ -3,11 +3,11 @@ version: 2.1
 jobs:
   print-hello-world:
     docker:
-      -image: cimg/base:2022.06
+      - image: cimg/base:2022.06
     steps:
-      -run:
-        name: Print hello world
-        command: echo HelloWorld
+      - run:
+          name: Print hello world
+          command: echo HelloWorld
 
 workflows:
   version: 2
