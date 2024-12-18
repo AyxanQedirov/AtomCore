@@ -3,12 +3,20 @@ version: 2.1
 jobs:
   print-hello-world:
     docker:
-      - image: circleci/node:14
+      - image: cimg/base:2022.06
     steps:
       - checkout
       - run:
           name: Print hello world
-          command: git log
+          command: |
+            if [[ "$(git log -1 --pretty=%B)" != "new version:"* ]]; then
+              echo "Pipeline will not work, because commit message does not contain 'new version:' prefix"
+              circleci-agent step halt
+            fi
+      - run:
+          name: Step 2
+          command: echo StepTwoWorked
+
 
 workflows:
   version: 2
