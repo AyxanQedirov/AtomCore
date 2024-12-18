@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Print hello world
+          name: Checking commit message suitability
           command: |
             if [[ "$(git log -1 --pretty=%B)" != "new version:"* ]]; then
               echo "Pipeline will not work, because commit message does not contain 'new version:' prefix"
