@@ -10,7 +10,7 @@ jobs:
           command: echo Job 1 worked !
   job-2:
     docker:
-      -image: cimg/base:2022.06
+      - image: cimg/base:2022.06
     steps:
       - run:
           name: PETESH baby come
