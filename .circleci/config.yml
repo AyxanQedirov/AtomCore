@@ -1,29 +1,25 @@
 version: 2.1
 
 jobs:
-  print-hello-world:
+  job-1:
     docker:
       - image: cimg/base:2022.06
     steps:
-      - checkout
       - run:
-          name: Checking commit message suitability
-          command: |
-            if [[ "$(git log -1 --pretty=%B)" != "new version:"* ]]; then
-              echo "Pipeline will not work, because commit message does not contain 'new version:' prefix"
-              circleci-agent step halt
-            fi
+          name: Print Job 1 word
+          command: echo Job 1 worked !
+  job-2:
+    docker:
+      -image: cimg/base:2022.06
+    steps:
       - run:
-          name: Step 2
-          command: echo StepTwoWorked
-
+          name: PETESH baby come
+          command: whoami
 
 workflows:
   version: 2
-  hello_world_flow:
+  pipeline-1:
     jobs:
-      - print-hello-world:
-          filters:
-            branches:
-              only:
-                - master
+      - job-1
+      - job-2
+      
