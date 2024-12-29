@@ -8,13 +8,13 @@ jobs:
       - checkout 
       - run:
           name: Change directory
-          command: cd Core
+          command: cd AtomCore
       - run:
           name: Packing the project
           command: dotnet pack
       - run:
           name: Push to NuGet
-          command: dotnet nuget push Core/bin/Release/*.nupkg --api-key $NUGET_PUSBLISH_KEY --source https://api.nuget.org/v3/index.json
+          command: dotnet nuget push AtomCore/bin/Release/*.nupkg --api-key $NUGET_PUSBLISH_KEY --source https://api.nuget.org/v3/index.json
 
 workflows:
   version: 2
