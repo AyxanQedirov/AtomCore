@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.CCC.ExceptionHandling.RestAPIHandler;
+namespace AtomCore.CCC.ExceptionHandling.RestAPIHandler;
 
 public static class WebApplicationExtensions
 {

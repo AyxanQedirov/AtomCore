@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.EnumToSeeder;
+namespace AtomCore.EnumToSeeder;
 
 [AttributeUsage(AttributeTargets.Field, AllowMultiple = false)]
 public class Metas : Attribute

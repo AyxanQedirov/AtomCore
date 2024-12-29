@@ -1,4 +1,4 @@
-﻿namespace Core.CCC.ExceptionHandling.RestAPIHandler.Exceptions;
+﻿namespace AtomCore.CCC.ExceptionHandling.RestAPIHandler.Exceptions;
 
 public class BaseException:Exception
 {

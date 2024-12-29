@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.CCC.ExceptionHandling.RestAPIHandler.Exceptions;
+namespace AtomCore.CCC.ExceptionHandling.RestAPIHandler.Exceptions;
 
 public class BusinessException : BaseException
 {

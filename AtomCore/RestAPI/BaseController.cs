@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.RestAPI;
+namespace AtomCore.RestAPI;
 
 [ApiController]
 [Route("api/[controller]/[action]")]

@@ -1,8 +1,8 @@
-﻿using Core.CCC.ExceptionHandling.RestAPIHandler.Exceptions;
-using Core.CCC.ExceptionHandling.RestAPIHandler.ResponseCreator;
+﻿using AtomCore.CCC.ExceptionHandling.RestAPIHandler.Exceptions;
+using AtomCore.CCC.ExceptionHandling.RestAPIHandler.ResponseCreator;
 using Microsoft.AspNetCore.Http;
 
-namespace Core.CCC.ExceptionHandling.RestAPIHandler;
+namespace AtomCore.CCC.ExceptionHandling.RestAPIHandler;
 
 public class GlobalExceptionHandlerMiddleware
 {

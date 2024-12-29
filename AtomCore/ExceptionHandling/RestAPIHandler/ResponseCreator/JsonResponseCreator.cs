@@ -1,8 +1,8 @@
-﻿using Core.CCC.ExceptionHandling.RestAPIHandler.Exceptions;
-using Core.CCC.ExceptionHandling.RestAPIHandler.ProblemDetails;
+﻿using AtomCore.CCC.ExceptionHandling.RestAPIHandler.Exceptions;
+using AtomCore.CCC.ExceptionHandling.RestAPIHandler.ProblemDetails;
 using Microsoft.AspNetCore.Http;
 
-namespace Core.CCC.ExceptionHandling.RestAPIHandler.ResponseCreator;
+namespace AtomCore.CCC.ExceptionHandling.RestAPIHandler.ResponseCreator;
 
 internal class JsonResponseCreator(IHttpContextAccessor _httpContextAccessor) : IResponseCreator
 {

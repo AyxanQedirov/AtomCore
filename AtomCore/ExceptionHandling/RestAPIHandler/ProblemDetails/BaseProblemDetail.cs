@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Core.CCC.ExceptionHandling.RestAPIHandler.ProblemDetails;
+namespace AtomCore.CCC.ExceptionHandling.RestAPIHandler.ProblemDetails;
 
 public class BaseProblemDetail
 {

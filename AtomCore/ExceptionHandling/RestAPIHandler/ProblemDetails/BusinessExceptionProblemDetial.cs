@@ -1,7 +1,7 @@
-﻿using Core.CCC.ExceptionHandling.RestAPIHandler.Exceptions;
+﻿using AtomCore.CCC.ExceptionHandling.RestAPIHandler.Exceptions;
 using System.Net;
 
-namespace Core.CCC.ExceptionHandling.RestAPIHandler.ProblemDetails;
+namespace AtomCore.CCC.ExceptionHandling.RestAPIHandler.ProblemDetails;
 
 public class BusinessExceptionProblemDetial:BaseProblemDetail
 {

@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.EnumToSeeder;
+namespace AtomCore.EnumToSeeder;
 
 public static class EnumExtensionForReadMetasAttr
 {
