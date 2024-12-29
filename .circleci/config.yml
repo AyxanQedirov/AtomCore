@@ -14,7 +14,7 @@ jobs:
           command: dotnet pack
       - run:
           name: Push to NuGet
-          command: dotnet nuget push Core/bin/Release/*.nupkg --api-key $NUGET_PUSBLISH_KEY
+          command: dotnet nuget push Core/bin/Release/Core.1.0.0.nupkg --api-key $NUGET_PUSBLISH_KEY
 
 workflows:
   version: 2
