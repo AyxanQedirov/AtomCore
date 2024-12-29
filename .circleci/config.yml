@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  job-1:
+  pack-and-publsih:
     docker:
       - image: mcr.microsoft.com/dotnet/sdk:8.0
     steps:
@@ -20,4 +20,8 @@ workflows:
   version: 2
   pipeline-1:
     jobs:
-      - job-1
+      - pack-and-publsih:
+          filters:
+            branches:
+              only:
+                - master
