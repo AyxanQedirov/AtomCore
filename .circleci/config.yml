@@ -5,10 +5,10 @@ jobs:
     docker:
       - image: mcr.microsoft.com/dotnet/sdk:8.0
     steps:
-      - checkout
+      - checkout 
       - run:
           name: Check Git pull
-          command: ls
+          command: ls -al
   job-2:
     docker:
       - image: cimg/base:2022.06
