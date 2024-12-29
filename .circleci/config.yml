@@ -14,7 +14,7 @@ jobs:
           command: dotnet pack
       - run:
           name: Go to the nupkg directory
-          command: ls -al
+          command: cd Core/bin/Release && ls -al
 workflows:
   version: 2
   pipeline-1:
