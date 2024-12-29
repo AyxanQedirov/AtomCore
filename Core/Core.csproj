@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     
     <PackageId>Core</PackageId>
+    <Version>1.0.0</Version>
     <Authors>Aykhan Gadirov</Authors>
     <Company>Aykhan Gadirov</Company>
     <Product>Core</Product>

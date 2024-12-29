@@ -13,11 +13,8 @@ jobs:
           name: Packing the project
           command: dotnet pack
       - run:
-          name: Go to the nupkg directory
-          command: cd Core/bin/Release && ls -al
-      - run:
-          name: See environment variables
-          command: printenv
+          name: Push to NuGet
+          command: dotnet nuget push Core/bin/Release/*.nupkg --api-key $NUGET_PUSBLISH_KEY
 
 workflows:
   version: 2
