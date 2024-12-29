@@ -5,11 +5,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     
-    <PackageId>Core</PackageId>
+    <PackageId>AtomCore</PackageId>
     <Version>1.0.0</Version>
     <Authors>Aykhan Gadirov</Authors>
     <Company>Aykhan Gadirov</Company>
-    <Product>Core</Product>
+    <Product>AtomCore</Product>
     <Description>This package contains core and shareable functionalities for .NET applications 🌍</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>core, api, common, shared, exception, handling</PackageTags>
