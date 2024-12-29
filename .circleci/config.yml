@@ -21,7 +21,7 @@ workflows:
   pipeline-1:
     jobs:
       - job-1
-      - job-2
+      - job-2:
           requires:
             - job-1
 
