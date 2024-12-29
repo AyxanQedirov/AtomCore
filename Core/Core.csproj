@@ -4,6 +4,15 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    
+    <PackageId>Core</PackageId>
+    <Authors>Aykhan Gadirov</Authors>
+    <Company>Aykhan Gadirov</Company>
+    <Product>Core</Product>
+    <Description>This package contains core and shareable functionalities for .NET applications 🌍</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>core, api, common, shared, exception, handling</PackageTags>
+    <RepositoryUrl>https://github.com/AyxanQedirov/Core</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
