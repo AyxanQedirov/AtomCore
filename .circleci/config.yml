@@ -5,9 +5,10 @@ jobs:
     docker:
       - image: mcr.microsoft.com/dotnet/sdk:8.0
     steps:
+      - checkout
       - run:
-          name: Print Job 1 word
-          command: echo Job 1 worked !
+          name: Check Git pull
+          command: ls
   job-2:
     docker:
       - image: cimg/base:2022.06
