@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   job-1:
     docker:
-      - image: alpine
+      - image: mcr.microsoft.com/dotnet/sdk:8.0
     steps:
       - run:
           name: Print Job 1 word
