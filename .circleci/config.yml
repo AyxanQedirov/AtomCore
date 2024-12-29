@@ -7,23 +7,16 @@ jobs:
     steps:
       - checkout 
       - run:
-          name: Check Git pull
-          command: ls -al
-  job-2:
-    docker:
-      - image: cimg/base:2022.06
-    steps:
+          name: Change directory
+          command: cd Core
       - run:
-          name: PETESH baby come
-          command: whoami
-
+          name: Packing the project
+          command: dotnet pack
+      - run:
+          name: Go to the nupkg directory
+          command: cd bin/Release && ls
 workflows:
   version: 2
   pipeline-1:
     jobs:
       - job-1
-      - job-2:
-          requires:
-            - job-1
-
-      
