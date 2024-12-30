@@ -24,4 +24,15 @@ public class BaseValidator<T> : AbstractValidator<T>
 
         return false;
     }
+
+    protected bool ContainAtLeastOneCapitalCaseLetter(string text)
+    {
+        //65 => A
+        //90 => Z
+        foreach(var ch in text)
+            if(ch>=65 && ch<=90)
+                return true;
+
+        return false;
+    }
 }
