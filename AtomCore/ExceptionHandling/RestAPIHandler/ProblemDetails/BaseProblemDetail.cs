@@ -7,7 +7,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace AtomCore.CCC.ExceptionHandling.RestAPIHandler.ProblemDetails;
+namespace AtomCore.ExceptionHandling.RestAPIHandler.ProblemDetails;
 
 public class BaseProblemDetail
 {
@@ -24,7 +24,7 @@ public class BaseProblemDetail
     public virtual string ToXMLString()
     {
         using StringWriter stringWriter = new StringWriter();
-        XmlSerializer serializer = new XmlSerializer(this.GetType());
+        XmlSerializer serializer = new XmlSerializer(GetType());
         serializer.Serialize(stringWriter, this);
 
         return stringWriter.ToString();

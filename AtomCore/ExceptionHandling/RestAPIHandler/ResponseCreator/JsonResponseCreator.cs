@@ -1,8 +1,8 @@
-﻿using AtomCore.CCC.ExceptionHandling.RestAPIHandler.Exceptions;
-using AtomCore.CCC.ExceptionHandling.RestAPIHandler.ProblemDetails;
+﻿using AtomCore.ExceptionHandling.Exceptions;
+using AtomCore.ExceptionHandling.RestAPIHandler.ProblemDetails;
 using Microsoft.AspNetCore.Http;
 
-namespace AtomCore.CCC.ExceptionHandling.RestAPIHandler.ResponseCreator;
+namespace AtomCore.ExceptionHandling.RestAPIHandler.ResponseCreator;
 
 internal class JsonResponseCreator(IHttpContextAccessor _httpContextAccessor) : IResponseCreator
 {
@@ -13,8 +13,8 @@ internal class JsonResponseCreator(IHttpContextAccessor _httpContextAccessor) : 
     {
         BusinessExceptionProblemDetial problemDetail = new(exception);
 
-        _httpContextAccessor.HttpContext.Response.ContentType=GetContentType();
-        _httpContextAccessor.HttpContext.Response.StatusCode=problemDetail.StatusCode;
+        _httpContextAccessor.HttpContext.Response.ContentType = GetContentType();
+        _httpContextAccessor.HttpContext.Response.StatusCode = problemDetail.StatusCode;
         await _httpContextAccessor.HttpContext.Response.WriteAsync(problemDetail.ToJsonString());
     }
 

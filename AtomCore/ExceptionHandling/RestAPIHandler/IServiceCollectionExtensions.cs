@@ -1,4 +1,4 @@
-﻿using AtomCore.CCC.ExceptionHandling.RestAPIHandler.ResponseCreator;
+﻿using AtomCore.ExceptionHandling.RestAPIHandler.ResponseCreator;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtomCore.CCC.ExceptionHandling.RestAPIHandler;
+namespace AtomCore.ExceptionHandling.RestAPIHandler;
 
 public static class IServiceCollectionExtensions
 {

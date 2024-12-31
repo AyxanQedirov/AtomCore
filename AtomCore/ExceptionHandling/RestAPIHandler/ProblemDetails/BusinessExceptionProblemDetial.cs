@@ -1,19 +1,32 @@
-﻿using AtomCore.CCC.ExceptionHandling.RestAPIHandler.Exceptions;
+﻿using AtomCore.ExceptionHandling.Exceptions;
 using System.Net;
 
-namespace AtomCore.CCC.ExceptionHandling.RestAPIHandler.ProblemDetails;
+namespace AtomCore.ExceptionHandling.RestAPIHandler.ProblemDetails;
 
-public class BusinessExceptionProblemDetial:BaseProblemDetail
+public class BusinessExceptionProblemDetial : BaseProblemDetail
 {
     public BusinessExceptionProblemDetial()
     {
-        
+
     }
     public BusinessExceptionProblemDetial(BusinessException exception)
     {
         Type = exception.GetType().Name;
         StatusCode = (int)HttpStatusCode.BadRequest;
         Message = exception.Message;
-        TraceId= exception.TraceId;
+        TraceId = exception.TraceId;
+    }
+}
+
+public class ValidationExceptionProblemDetail : BaseProblemDetail
+{
+    public ValidationExceptionProblemDetail()
+    {
+
+    }
+
+    public ValidationExceptionProblemDetail(ValidationException exception)
+    {
+
     }
 }

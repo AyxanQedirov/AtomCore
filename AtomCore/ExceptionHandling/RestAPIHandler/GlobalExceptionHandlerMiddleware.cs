@@ -1,14 +1,14 @@
-﻿using AtomCore.CCC.ExceptionHandling.RestAPIHandler.Exceptions;
-using AtomCore.CCC.ExceptionHandling.RestAPIHandler.ResponseCreator;
+﻿using AtomCore.ExceptionHandling.Exceptions;
+using AtomCore.ExceptionHandling.RestAPIHandler.ResponseCreator;
 using Microsoft.AspNetCore.Http;
 
-namespace AtomCore.CCC.ExceptionHandling.RestAPIHandler;
+namespace AtomCore.ExceptionHandling.RestAPIHandler;
 
 public class GlobalExceptionHandlerMiddleware
 {
     private readonly RequestDelegate _next;
     private readonly IResponseCreator _responseCreator;
-    public GlobalExceptionHandlerMiddleware(RequestDelegate next,IResponseCreator responseCreator)
+    public GlobalExceptionHandlerMiddleware(RequestDelegate next, IResponseCreator responseCreator)
     {
         _next = next;
         _responseCreator = responseCreator;
@@ -29,7 +29,7 @@ public class GlobalExceptionHandlerMiddleware
 
     public Task FindHandler(Exception ex)
     {
-        if(ex is BusinessException businessException) return _responseCreator.HandleException(businessException);
+        if (ex is BusinessException businessException) return _responseCreator.HandleException(businessException);
         return _responseCreator.HandleException(ex);
     }
 }

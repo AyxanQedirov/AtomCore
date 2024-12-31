@@ -1,11 +1,11 @@
-﻿using AtomCore.CCC.ExceptionHandling.RestAPIHandler.Exceptions;
+﻿using AtomCore.ExceptionHandling.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtomCore.CCC.ExceptionHandling.RestAPIHandler.ResponseCreator;
+namespace AtomCore.ExceptionHandling.RestAPIHandler.ResponseCreator;
 
 public interface IResponseCreator
 {
@@ -14,5 +14,3 @@ public interface IResponseCreator
     Task HandleException(BusinessException exception);
     Task HandleException(Exception exception);
 }
-
-

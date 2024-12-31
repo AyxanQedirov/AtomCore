@@ -1,8 +1,8 @@
-﻿using AtomCore.CCC.ExceptionHandling.RestAPIHandler.Exceptions;
-using AtomCore.CCC.ExceptionHandling.RestAPIHandler.ProblemDetails;
+﻿using AtomCore.ExceptionHandling.Exceptions;
+using AtomCore.ExceptionHandling.RestAPIHandler.ProblemDetails;
 using Microsoft.AspNetCore.Http;
 
-namespace AtomCore.CCC.ExceptionHandling.RestAPIHandler.ResponseCreator;
+namespace AtomCore.ExceptionHandling.RestAPIHandler.ResponseCreator;
 
 internal class XMLResponseCreator(IHttpContextAccessor _httpContextAccessor) : IResponseCreator
 {

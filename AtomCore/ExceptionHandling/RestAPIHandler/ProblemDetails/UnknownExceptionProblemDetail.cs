@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace AtomCore.CCC.ExceptionHandling.RestAPIHandler.ProblemDetails;
+namespace AtomCore.ExceptionHandling.RestAPIHandler.ProblemDetails;
 
 public class UnknownExceptionProblemDetail : BaseProblemDetail
 {
