@@ -17,16 +17,3 @@ public class BusinessExceptionProblemDetial : BaseProblemDetail
         TraceId = exception.TraceId;
     }
 }
-
-public class ValidationExceptionProblemDetail : BaseProblemDetail
-{
-    public ValidationExceptionProblemDetail()
-    {
-
-    }
-
-    public ValidationExceptionProblemDetail(ValidationException exception)
-    {
-
-    }
-}

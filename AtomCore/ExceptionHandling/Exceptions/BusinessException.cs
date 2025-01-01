@@ -14,11 +14,3 @@ public class BusinessException : BaseException
     }
 }
 
-public class ValidationException : BaseException
-{
-    public ValidationException(string message) : base(message)
-    {
-        TraceId = Guid.NewGuid().ToString();
-    }
-}
-

@@ -19,12 +19,15 @@
 
 	<ItemGroup>
 		<Folder Include="ExceptionHandling\GrpcHandler\" />
+		<Folder Include="JWT\" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="FluentValidation" Version="11.11.0" />
 		<PackageReference Include="MediatR" Version="12.4.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.1.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+		<PackageReference Include="System.Linq.Dynamic.Core" Version="1.5.1" />
 	</ItemGroup>
 
 	<ItemGroup>

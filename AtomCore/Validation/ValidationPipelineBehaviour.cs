@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
-using ValidationException= AtomCore.ExceptionHandling.RestAPIHandler.
+using ValidationException = AtomCore.ExceptionHandling.Exceptions.ValidationException;
 
-namespace AtomCore.MediatrPipelines;
+namespace AtomCore.Validation;
 
 public class ValidationPipelineBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>

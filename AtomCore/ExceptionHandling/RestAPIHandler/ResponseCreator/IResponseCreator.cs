@@ -12,5 +12,6 @@ public interface IResponseCreator
     string GetContentType();
 
     Task HandleException(BusinessException exception);
+    Task HandleException(ValidationException exception);
     Task HandleException(Exception exception);
 }
