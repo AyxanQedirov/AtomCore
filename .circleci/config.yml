@@ -14,7 +14,8 @@ jobs:
           command: dotnet pack
       - run:
           name: Push to NuGet
-          command: dotnet nuget push AtomCore/bin/Release/*.nupkg --api-key $NUGET_PUSBLISH_KEY --source https://api.nuget.org/v3/index.json
+          command: ls AtomCore/bin/Release
+          # command: dotnet nuget push AtomCore/bin/Release/*.nupkg --api-key $NUGET_PUSBLISH_KEY --source https://api.nuget.org/v3/index.json
 
 workflows:
   version: 2
