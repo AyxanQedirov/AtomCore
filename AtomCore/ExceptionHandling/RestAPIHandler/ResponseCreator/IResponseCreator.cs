@@ -13,5 +13,7 @@ public interface IResponseCreator
 
     Task HandleException(BusinessException exception);
     Task HandleException(ValidationException exception);
+    Task HandleException(AuthenticationException exception);
+    Task HandleException(AuthorizationException exception);
     Task HandleException(Exception exception);
 }

@@ -13,7 +13,7 @@ internal class XMLResponseCreator(IHttpContextAccessor _httpContextAccessor) : I
     {
         BusinessExceptionProblemDetial problemDetail = new(exception);
 
-        _httpContextAccessor.HttpContext.Response.ContentType = GetContentType();
+        _httpContextAccessor.HttpContext!.Response.ContentType = GetContentType();
         _httpContextAccessor.HttpContext.Response.StatusCode = problemDetail.StatusCode;
         await _httpContextAccessor.HttpContext.Response.WriteAsync(problemDetail.ToXMLString());
     }
@@ -22,7 +22,7 @@ internal class XMLResponseCreator(IHttpContextAccessor _httpContextAccessor) : I
     {
         UnknownExceptionProblemDetail problemDetail = new(exception);
 
-        _httpContextAccessor.HttpContext.Response.ContentType = GetContentType();
+        _httpContextAccessor.HttpContext!.Response.ContentType = GetContentType();
         _httpContextAccessor.HttpContext.Response.StatusCode = problemDetail.StatusCode;
         await _httpContextAccessor.HttpContext.Response.WriteAsync(problemDetail.ToXMLString());
     }
@@ -31,7 +31,25 @@ internal class XMLResponseCreator(IHttpContextAccessor _httpContextAccessor) : I
     {
         ValidationExceptionProblemDetail problemDetail = new(exception);
 
-        _httpContextAccessor.HttpContext.Response.ContentType = GetContentType();
+        _httpContextAccessor.HttpContext!.Response.ContentType = GetContentType();
+        _httpContextAccessor.HttpContext.Response.StatusCode = problemDetail.StatusCode;
+        await _httpContextAccessor.HttpContext.Response.WriteAsync(problemDetail.ToXMLString());
+    }
+
+    public async Task HandleException(AuthenticationException exception)
+    {
+        AuthenticationExceptionProblemDetail problemDetail = new(exception);
+
+        _httpContextAccessor.HttpContext!.Response.ContentType = GetContentType();
+        _httpContextAccessor.HttpContext.Response.StatusCode = problemDetail.StatusCode;
+        await _httpContextAccessor.HttpContext.Response.WriteAsync(problemDetail.ToXMLString());
+    }
+
+    public async Task HandleException(AuthorizationException exception)
+    {
+        AuthorizationExceptionProblemDetail problemDetail = new(exception);
+
+        _httpContextAccessor.HttpContext!.Response.ContentType = GetContentType();
         _httpContextAccessor.HttpContext.Response.StatusCode = problemDetail.StatusCode;
         await _httpContextAccessor.HttpContext.Response.WriteAsync(problemDetail.ToXMLString());
     }

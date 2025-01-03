@@ -5,11 +5,11 @@ using ValidationException = AtomCore.ExceptionHandling.Exceptions.ValidationExce
 
 namespace AtomCore.Validation;
 
-public class ValidationPipelineBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+public class ValidationPipeline<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
     private readonly IValidator<TRequest> _validator;
-    public ValidationPipelineBehaviour(IValidator<TRequest> validator)
+    public ValidationPipeline(IValidator<TRequest> validator)
     {
         _validator = validator;
     }

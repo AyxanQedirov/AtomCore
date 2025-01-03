@@ -9,4 +9,3 @@ public class ValidationException : BaseException
         Errors = errors;
     }
 }
-

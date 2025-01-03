@@ -13,7 +13,7 @@ internal class JsonResponseCreator(IHttpContextAccessor _httpContextAccessor) : 
     {
         BusinessExceptionProblemDetial problemDetail = new(exception);
 
-        _httpContextAccessor.HttpContext.Response.ContentType = GetContentType();
+        _httpContextAccessor.HttpContext!.Response.ContentType = GetContentType();
         _httpContextAccessor.HttpContext.Response.StatusCode = problemDetail.StatusCode;
         await _httpContextAccessor.HttpContext.Response.WriteAsync(problemDetail.ToJsonString());
     }
@@ -22,7 +22,7 @@ internal class JsonResponseCreator(IHttpContextAccessor _httpContextAccessor) : 
     {
         UnknownExceptionProblemDetail problemDetail = new(exception);
 
-        _httpContextAccessor.HttpContext.Response.ContentType = GetContentType();
+        _httpContextAccessor.HttpContext!.Response.ContentType = GetContentType();
         _httpContextAccessor.HttpContext.Response.StatusCode = problemDetail.StatusCode;
         await _httpContextAccessor.HttpContext.Response.WriteAsync(problemDetail.ToJsonString());
     }
@@ -31,7 +31,25 @@ internal class JsonResponseCreator(IHttpContextAccessor _httpContextAccessor) : 
     {
         ValidationExceptionProblemDetail problemDetail = new(exception);
 
-        _httpContextAccessor.HttpContext.Response.ContentType = GetContentType();
+        _httpContextAccessor.HttpContext!.Response.ContentType = GetContentType();
+        _httpContextAccessor.HttpContext.Response.StatusCode = problemDetail.StatusCode;
+        await _httpContextAccessor.HttpContext.Response.WriteAsync(problemDetail.ToJsonString());
+    }
+
+    public async Task HandleException(AuthenticationException exception)
+    {
+        AuthenticationExceptionProblemDetail problemDetail = new(exception);
+
+        _httpContextAccessor.HttpContext!.Response.ContentType = GetContentType();
+        _httpContextAccessor.HttpContext.Response.StatusCode = problemDetail.StatusCode;
+        await _httpContextAccessor.HttpContext.Response.WriteAsync(problemDetail.ToJsonString());
+    }
+
+    public async Task HandleException(AuthorizationException exception)
+    {
+        AuthorizationExceptionProblemDetail problemDetail = new(exception);
+
+        _httpContextAccessor.HttpContext!.Response.ContentType = GetContentType();
         _httpContextAccessor.HttpContext.Response.StatusCode = problemDetail.StatusCode;
         await _httpContextAccessor.HttpContext.Response.WriteAsync(problemDetail.ToJsonString());
     }
