@@ -9,11 +9,11 @@ namespace AtomCore.i18n;
 
 public static class IServiceCollectionExtensions
 {
-    public static IServiceCollection AddTranslations<T>(this IServiceCollection services, params T[] translations)
+    public static IServiceCollection AddTranslations<T>(this IServiceCollection services, params Type[] translations)
     {
         foreach (var translation in translations)
         {
-            LanguageCodeAttribute languageCodeAttribute = translation!.GetType()
+            LanguageCodeAttribute languageCodeAttribute = translation
                 .GetCustomAttributes(false)
                 .Where(a => a.GetType() == typeof(LanguageCodeAttribute))
                 .FirstOrDefault() as LanguageCodeAttribute
