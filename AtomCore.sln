@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AtomCore", "AtomCore\AtomCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab", "Lab\Lab.csproj", "{74845300-0C5B-4E52-9791-18E17419DA3D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabAPI", "LabAPI\LabAPI.csproj", "{4ED3A6D0-C64B-4F6F-989F-6642C193150F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{74845300-0C5B-4E52-9791-18E17419DA3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74845300-0C5B-4E52-9791-18E17419DA3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74845300-0C5B-4E52-9791-18E17419DA3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ED3A6D0-C64B-4F6F-989F-6642C193150F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ED3A6D0-C64B-4F6F-989F-6642C193150F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ED3A6D0-C64B-4F6F-989F-6642C193150F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ED3A6D0-C64B-4F6F-989F-6642C193150F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

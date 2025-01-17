@@ -19,7 +19,7 @@ public static class IServiceCollectionExtensions
                 .FirstOrDefault() as LanguageCodeAttribute
                 ?? throw new ArgumentNullException($"{translation.GetType().Name} does not contains {typeof(LanguageCodeAttribute).Name} attribute. Please add it.");
 
-            services.AddKeyedSingleton(typeof(T), languageCodeAttribute.Code, translation.GetType());
+            services.AddKeyedSingleton(typeof(T), languageCodeAttribute.Code, translation);
         }
 
         return services;
