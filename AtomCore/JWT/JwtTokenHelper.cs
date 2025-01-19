@@ -26,9 +26,14 @@ public class JwtTokenHelper
         string issuer = _configuration["Jwt:Issuer"] ?? throw new ArgumentNullException("Issuer was not settd. appsettings.json > Jwt > Issuer");
 
 
+        return CreateToken(key,int.Parse(expireMinute),audience,issuer,claims);
+    }
+
+    public string CreateToken(string key, int expireAdditionAsMinute, string audience, string issuer, params Claim[] claims)
+    {
         SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(key));
         SigningCredentials signingCredentials = new(securityKey, SecurityAlgorithms.HmacSha512);
-        DateTime expirationDate = DateTime.Now.AddMinutes(int.Parse(expireMinute));
+        DateTime expirationDate = DateTime.Now.AddMinutes(expireAdditionAsMinute);
 
 
         JwtSecurityToken jwtSecurityToken = new(
