@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
@@ -18,7 +18,7 @@ public class BaseProblemDetail
 
     public virtual string ToJsonString()
     {
-        return JsonSerializer.Serialize(this);
+        return JsonConvert.SerializeObject(this);
     }
 
     public virtual string ToXMLString()

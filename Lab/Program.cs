@@ -1,6 +1,15 @@
-﻿string text = "12A";
+﻿using AtomCore.ExceptionHandling.RestAPIHandler.ProblemDetails;
 
-foreach(char ch in text)
+ValidationExceptionProblemDetail problemDetail = new()
 {
-    Console.WriteLine((int)ch);
-}
+    Type = "ValidationException",
+    StatusCode = 422,
+    Message = "Salam",
+    TraceId = Guid.NewGuid().ToString(),
+    Errors = new()
+    {
+        {"Salam",["1","2","3"] }
+    }
+};
+
+Console.WriteLine(problemDetail.ToJsonString());
