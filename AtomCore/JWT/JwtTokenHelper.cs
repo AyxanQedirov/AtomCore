@@ -48,15 +48,15 @@ public class JwtTokenHelper
         JwtSecurityTokenHandler jwtSecurityTokenHandler = new();
         return jwtSecurityTokenHandler.WriteToken(jwtSecurityToken);
     }
-    public bool ValidateToken(string rawToken)
+    public bool ValidateToken(string rawToken, bool checkExpiration = true)
     {
         string secretKey = _configuration["Jwt:SecretKey"] ?? throw new ArgumentNullException("SecretKey was not settd. appsettings.json > Jwt > Key");
         string audience = _configuration["Jwt:Audience"] ?? throw new ArgumentNullException("Audience was not settd. appsettings.json > Jwt > Audience");
         string issuer = _configuration["Jwt:Issuer"] ?? throw new ArgumentNullException("Issuer was not settd. appsettings.json > Jwt > Issuer");
 
-        return ValidateToken(rawToken, secretKey, audience, issuer);
+        return ValidateToken(rawToken, secretKey, audience, issuer, checkExpiration);
     }
-    public bool ValidateToken(string rawToken, string secretKey, string audience, string issuer)
+    public bool ValidateToken(string rawToken, string secretKey, string audience, string issuer, bool checkExpiration = true)
     {
         if (rawToken is null)
             throw new ArgumentNullException("Token which you give is null");
@@ -73,7 +73,7 @@ public class JwtTokenHelper
                 ValidateIssuerSigningKey = true,
                 ValidateIssuer = true,
                 ValidateAudience = true,
-                ValidateLifetime = true,
+                ValidateLifetime = checkExpiration,
                 IssuerSigningKey = securityKey,
                 ValidIssuer = issuer,
                 ValidAudience = audience
