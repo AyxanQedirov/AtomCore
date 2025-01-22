@@ -13,4 +13,3 @@ public class BusinessException : BaseException
         TraceId = Guid.NewGuid().ToString();
     }
 }
-

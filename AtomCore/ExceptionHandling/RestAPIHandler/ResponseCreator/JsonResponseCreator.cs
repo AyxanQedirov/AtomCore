@@ -18,6 +18,15 @@ internal class JsonResponseCreator(IHttpContextAccessor _httpContextAccessor) : 
         await _httpContextAccessor.HttpContext.Response.WriteAsync(problemDetail.ToJsonString());
     }
 
+    public async Task HandleException(InfrastructureException exception)
+    {
+        InfrastructureExceptionProblemDetial problemDetail = new(exception);
+        
+        _httpContextAccessor.HttpContext!.Response.ContentType = GetContentType();
+        _httpContextAccessor.HttpContext.Response.StatusCode = problemDetail.StatusCode;
+        await _httpContextAccessor.HttpContext.Response.WriteAsync(problemDetail.ToJsonString());
+    }
+
     public async Task HandleException(Exception exception)
     {
         UnknownExceptionProblemDetail problemDetail = new(exception);
