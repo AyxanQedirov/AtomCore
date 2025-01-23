@@ -8,14 +8,21 @@ public class I18n(IHttpContextAccessor _httpContextAccessor, I18nConfig _i18nCon
 {
     public T GetTranslation<T>()
     {
-        string langCode = _httpContextAccessor.HttpContext!.Request.Headers[_i18nConfig.HeaderKey].ToString().IsNullOrEmpty() ?
-            _i18nConfig.LangCode : _httpContextAccessor.HttpContext!.Request.Headers[_i18nConfig.HeaderKey].ToString();
-
+        string langCode = GetLanguageCode();
+        
         T? translation = _httpContextAccessor.HttpContext.RequestServices.GetKeyedService<T>(langCode);
 
         if (translation is null)
             throw new ArgumentNullException($"{typeof(T)} does not exist translation for \"{langCode}\" language code");
 
         return translation;
+    }
+
+    public string GetLanguageCode()
+    {
+        string langCode = _httpContextAccessor.HttpContext!.Request.Headers[_i18nConfig.HeaderKey].ToString().IsNullOrEmpty() ?
+            _i18nConfig.DefaultLanguageCode : _httpContextAccessor.HttpContext!.Request.Headers[_i18nConfig.HeaderKey].ToString();
+
+        return langCode;
     }
 }

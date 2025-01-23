@@ -2,11 +2,11 @@
 
 public class I18nConfig
 {
-    public readonly string LangCode;
+    public readonly string DefaultLanguageCode;
     public readonly string HeaderKey;
-    public I18nConfig(string langCode,string headerKey)
+    public I18nConfig(string defaultLanguageCode,string headerKey)
     {
-        LangCode = langCode;
+        DefaultLanguageCode = defaultLanguageCode;
         HeaderKey = headerKey;
     }
 }
