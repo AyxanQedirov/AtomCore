@@ -1,5 +1,4 @@
-﻿using AtomCore.UniqueCodeGenerator;
+﻿using AtomCore.Extensions;
+using AtomCore.UniqueCodeGenerator;
 
-string code=UniqueCodeGenerator.Generate("xx-xxxx-xx");
-
-Console.WriteLine(code);
+Console.WriteLine("a".ToCapitalize());
