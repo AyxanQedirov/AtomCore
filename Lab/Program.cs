@@ -1,15 +1,5 @@
-﻿using AtomCore.ExceptionHandling.RestAPIHandler.ProblemDetails;
+﻿using AtomCore.UniqueCodeGenerator;
 
-ValidationExceptionProblemDetail problemDetail = new()
-{
-    Type = "ValidationException",
-    StatusCode = 422,
-    Message = "Salam",
-    TraceId = Guid.NewGuid().ToString(),
-    Errors = new()
-    {
-        {"Salam",["1","2","3"] }
-    }
-};
+string code=UniqueCodeGenerator.Generate("xx-xxxx-xx");
 
-Console.WriteLine(problemDetail.ToJsonString());
+Console.WriteLine(code);
