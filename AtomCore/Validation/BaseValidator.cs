@@ -12,7 +12,7 @@ public class BaseValidator<T> : AbstractValidator<T>
 {
     protected bool BePhoneNumber(string text)
     {
-        var isMatch = Regex.IsMatch(text, @"/^\+(\d{1,4}) (\d{4,14})$");
+        var isMatch = Regex.IsMatch(text, @"^\+(\d{1,4}) (\d{4,14})$");
             
         return isMatch;
     }
