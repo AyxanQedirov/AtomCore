@@ -21,15 +21,29 @@ public class JwtTokenHelper
 
     public string CreateToken(params Claim[] claims)
     {
-        string secretKey = _configuration["Jwt:Key"] ?? throw new ArgumentNullException("Key was not settd. appsettings.json > Jwt > Key");
-        string expireMinute = _configuration["Jwt:ExpiredDateAsMinute"] ?? throw new ArgumentNullException("ExpiredDateAsMinute was not settd. appsettings.json > Jwt > ExpiredDateAsMinute");
-        string audience = _configuration["Jwt:Audience"] ?? throw new ArgumentNullException("Audience was not settd. appsettings.json > Jwt > Audience");
-        string issuer = _configuration["Jwt:Issuer"] ?? throw new ArgumentNullException("Issuer was not settd. appsettings.json > Jwt > Issuer");
+        string secretKey = _configuration["Jwt:SecretKey"] ??
+                           throw new ArgumentNullException(
+                               "SecretKey was not settd. appsettings.json > Jwt > SecretKey");
+        string expireMinute = _configuration["Jwt:ExpiredDateAsMinute"] ??
+                              throw new ArgumentNullException(
+                                  "ExpiredDateAsMinute was not settd. appsettings.json > Jwt > ExpiredDateAsMinute");
+        string audience = _configuration["Jwt:Audience"] ??
+                          throw new ArgumentNullException("Audience was not settd. appsettings.json > Jwt > Audience");
+        string issuer = _configuration["Jwt:Issuer"] ??
+                        throw new ArgumentNullException("Issuer was not settd. appsettings.json > Jwt > Issuer");
 
 
         return CreateToken(secretKey, int.Parse(expireMinute), audience, issuer, claims);
     }
-    public string CreateToken(string secretKey, int expireAdditionAsMinute, string audience, string issuer, params Claim[] claims)
+
+    public string CreateToken(ITokenOption tokenOption, params Claim[] claims)
+    {
+        return CreateToken(tokenOption.SecretKet, int.Parse(tokenOption.ExpiredDateAsMinute), tokenOption.Audience,
+            tokenOption.Issuer, claims);
+    }
+
+    public string CreateToken(string secretKey, int expireAdditionAsMinute, string audience, string issuer,
+        params Claim[] claims)
     {
         SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(secretKey));
         SigningCredentials signingCredentials = new(securityKey, SecurityAlgorithms.HmacSha512);
@@ -48,15 +62,28 @@ public class JwtTokenHelper
         JwtSecurityTokenHandler jwtSecurityTokenHandler = new();
         return jwtSecurityTokenHandler.WriteToken(jwtSecurityToken);
     }
+
     public bool ValidateToken(string rawToken, bool checkExpiration = true)
     {
-        string secretKey = _configuration["Jwt:SecretKey"] ?? throw new ArgumentNullException("SecretKey was not settd. appsettings.json > Jwt > Key");
-        string audience = _configuration["Jwt:Audience"] ?? throw new ArgumentNullException("Audience was not settd. appsettings.json > Jwt > Audience");
-        string issuer = _configuration["Jwt:Issuer"] ?? throw new ArgumentNullException("Issuer was not settd. appsettings.json > Jwt > Issuer");
+        string secretKey = _configuration["Jwt:SecretKey"] ??
+                           throw new ArgumentNullException(
+                               "SecretKey was not settd. appsettings.json > Jwt > SecretKey");
+        string audience = _configuration["Jwt:Audience"] ??
+                          throw new ArgumentNullException("Audience was not settd. appsettings.json > Jwt > Audience");
+        string issuer = _configuration["Jwt:Issuer"] ??
+                        throw new ArgumentNullException("Issuer was not settd. appsettings.json > Jwt > Issuer");
 
         return ValidateToken(rawToken, secretKey, audience, issuer, checkExpiration);
     }
-    public bool ValidateToken(string rawToken, string secretKey, string audience, string issuer, bool checkExpiration = true)
+
+    public bool ValidateToken(ITokenOption tokenOption, string rawToken, bool checkExpiration = true)
+    {
+        return ValidateToken(rawToken, tokenOption.SecretKet, tokenOption.Audience, tokenOption.Issuer,
+            checkExpiration);
+    }
+
+    public bool ValidateToken(string rawToken, string secretKey, string audience, string issuer,
+        bool checkExpiration = true)
     {
         if (rawToken is null)
             throw new ArgumentNullException("Token which you give is null");
@@ -80,13 +107,13 @@ public class JwtTokenHelper
             }, out _);
 
             return true;
-
         }
         catch (Exception ex)
         {
             return false;
         }
     }
+
     public string NormalizeRawToken(string rawToken)
     {
         string targetWord = "Bearer";
@@ -97,8 +124,8 @@ public class JwtTokenHelper
 
         string normalizedToken = rawToken.Remove(targetWordStartIndex, targetWord.Length).Trim();
         return normalizedToken;
-
     }
+
     public JwtSecurityToken DecodeToken(string token)
     {
         string normalizedToken = NormalizeRawToken(token);
@@ -107,12 +134,14 @@ public class JwtTokenHelper
 
         return jwtToken;
     }
+
     public string? GetCurrentToken()
     {
         string? rawToken = _httpContextAccessor.HttpContext?.Request.Headers.Authorization;
 
         return rawToken;
     }
+
     public JwtSecurityToken GetCurrentDecodedToken()
     {
         string? rawToken = GetCurrentToken();
@@ -121,6 +150,7 @@ public class JwtTokenHelper
 
         return DecodeToken(rawToken);
     }
+
     public string? GetClaim(string key)
     {
         return GetCurrentDecodedToken().Claims.FirstOrDefault(claim => claim.Type == key)?.Value;
