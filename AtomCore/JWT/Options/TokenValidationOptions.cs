@@ -1,6 +1,6 @@
 namespace AtomCore.JWT;
 
-internal class TokenValidationOptions: ITokenOption
+public class TokenValidationOptions: ITokenOption
 {
     public string SecretKey { get; set; }
     public string Audience { get; set; }

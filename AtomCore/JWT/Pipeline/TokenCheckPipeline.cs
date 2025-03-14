@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 
 namespace AtomCore.JWT;
 
-public class TokenCheckPipeline<TRequest, TResponse>(JwtTokenHelper jwtTokenHelper,IOptions<TokenValidationOptions> options) : IPipelineBehavior<TRequest, TResponse>
+public class TokenCheckPipeline<TRequest, TResponse>(JwtTokenHelper jwtTokenHelper, IOptions<TokenValidationOptions> options) : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
     private readonly TokenValidationOptions option = options.Value;
