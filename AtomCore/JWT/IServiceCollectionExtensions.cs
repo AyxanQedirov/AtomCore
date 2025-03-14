@@ -22,8 +22,7 @@ public static class IServiceCollectionExtensions
         return services;
     }
 
-    public static IServiceCollection AddTokenCheckPipeline<TOption>(this IServiceCollection services, string accessTokenConfigSectionName)
-        where TOption : ITokenOption
+    public static IServiceCollection AddTokenCheckPipeline(this IServiceCollection services, string accessTokenConfigSectionName)
     {
         IConfiguration config=services.BuildServiceProvider().GetService<IConfiguration>()!;
         

@@ -6,7 +6,7 @@
 		<Nullable>enable</Nullable>
 
 		<PackageId>AtomCore</PackageId>
-		<Version>3.3.2</Version>
+		<Version>3.3.3</Version>
 		<Authors>Aykhan Gadirov</Authors>
 		<Company>Aykhan Gadirov</Company>
 		<Product>AtomCore</Product>
@@ -15,8 +15,7 @@
 		<PackageTags>core, api, common, shared, exception, handling</PackageTags>
 		<RepositoryUrl>https://github.com/AyxanQedirov/Core</RepositoryUrl>
 		<PackageIcon>logo.png</PackageIcon>
-		<PackageReleaseNotes>- Added Option pattern to JWT section
-- Changed JWT Validation pipeline</PackageReleaseNotes>
+		<PackageReleaseNotes>- Removed useless generic from Validation Pipeline extension</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -38,7 +38,7 @@ public class JwtTokenHelper
 
     public string CreateToken(ITokenOption tokenOption, params Claim[] claims)
     {
-        return CreateToken(tokenOption.SecretKet, int.Parse(tokenOption.ExpiredDateAsMinute), tokenOption.Audience,
+        return CreateToken(tokenOption.SecretKey, int.Parse(tokenOption.ExpiredDateAsMinute), tokenOption.Audience,
             tokenOption.Issuer, claims);
     }
 
@@ -78,7 +78,7 @@ public class JwtTokenHelper
 
     public bool ValidateToken(ITokenOption tokenOption, string rawToken, bool checkExpiration = true)
     {
-        return ValidateToken(rawToken, tokenOption.SecretKet, tokenOption.Audience, tokenOption.Issuer,
+        return ValidateToken(rawToken, tokenOption.SecretKey, tokenOption.Audience, tokenOption.Issuer,
             checkExpiration);
     }
 
