@@ -6,7 +6,7 @@
 		<Nullable>enable</Nullable>
 
 		<PackageId>AtomCore</PackageId>
-		<Version>3.3.3</Version>
+		<Version>3.3.4</Version>
 		<Authors>Aykhan Gadirov</Authors>
 		<Company>Aykhan Gadirov</Company>
 		<Product>AtomCore</Product>
