@@ -1,3 +1,4 @@
+using AtomCore.ExceptionHandling.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -44,7 +45,7 @@ public class RateLimitByIPPipeline<TRequest, TResponse>(
         }
 
         if (int.Parse(value!) <= 0)
-            throw new Exception("You reached the limit of request.");
+            throw new RateLimitException();
 
         await redis.StringDecrementAsync(key, 1);
     }
