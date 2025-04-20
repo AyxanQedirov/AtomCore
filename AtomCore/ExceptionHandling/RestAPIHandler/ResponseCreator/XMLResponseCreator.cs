@@ -62,4 +62,14 @@ internal class XMLResponseCreator(IHttpContextAccessor _httpContextAccessor) : I
         _httpContextAccessor.HttpContext.Response.StatusCode = problemDetail.StatusCode;
         await _httpContextAccessor.HttpContext.Response.WriteAsync(problemDetail.ToXMLString());
     }
+    
+    public async Task HandleException(RateLimitException exception)
+    {
+        RateLimitingExceptionProblemDetail problemDetail = new(exception);
+        
+        _httpContextAccessor.HttpContext!.Response.ContentType = GetContentType();
+        _httpContextAccessor.HttpContext.Response.StatusCode = problemDetail.StatusCode;
+        await _httpContextAccessor.HttpContext.Response.WriteAsync(problemDetail.ToXMLString());
+    }
+
 }
