@@ -34,6 +34,7 @@ public class GlobalExceptionHandlerMiddleware
         if(ex is AuthenticationException authenticationException) return _responseCreator.HandleException(authenticationException);
         if(ex is AuthorizationException authorizationException) return _responseCreator.HandleException(authorizationException);
         if(ex is InfrastructureException infrastructureException) return _responseCreator.HandleException(infrastructureException);
+        if(ex is RateLimitException rateLimitException) return _responseCreator.HandleException(rateLimitException);
 
         return _responseCreator.HandleException(ex);
     }
