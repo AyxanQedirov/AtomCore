@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using AtomCore.ExceptionHandling.Exceptions;
 
 namespace AtomCore.JWT;
 
@@ -86,7 +87,7 @@ public class JwtTokenHelper
         bool checkExpiration = true)
     {
         if (rawToken is null)
-            throw new ArgumentNullException("Token which you give is null");
+            throw new AuthenticationException("Token which you give is null");
 
         string token = NormalizeRawToken(rawToken);
 

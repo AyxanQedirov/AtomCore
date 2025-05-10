@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using System.Security.Authentication;
 using Microsoft.Extensions.Options;
+using AuthenticationException = AtomCore.ExceptionHandling.Exceptions.AuthenticationException;
 
 namespace AtomCore.JWT;
 
