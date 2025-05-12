@@ -7,7 +7,7 @@ using StackExchange.Redis;
 namespace AtomCore.RateLimiting;
 
 public class RateLimitByIPPipeline<TRequest, TResponse>(
-    [FromKeyedServices("ForRateLimiter")]IConnectionMultiplexer multiplexer,
+    [FromKeyedServices("ForRateLimiter")] IConnectionMultiplexer multiplexer,
     IHttpContextAccessor accessor)
     : IPipelineBehavior<TRequest, TResponse>
 {
@@ -30,7 +30,7 @@ public class RateLimitByIPPipeline<TRequest, TResponse>(
         string ip = accessor.HttpContext!.Connection.RemoteIpAddress!.ToString() == "::1"
             ? "localhost"
             : accessor.HttpContext!.Connection.RemoteIpAddress!.ToString();
-        
+
         string key =
             $"IPRateLimiting:{request!.GetType().Name}:{ip}";
 
@@ -40,7 +40,7 @@ public class RateLimitByIPPipeline<TRequest, TResponse>(
 
         if (value.IsNull)
         {
-            await redis.StringSetAsync(key, attribute.CoinCount, attribute.TimeInterval);
+            await redis.StringSetAsync(key, attribute.CoinCount - 1, attribute.TimeInterval);
             return;
         }
 
