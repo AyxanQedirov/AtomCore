@@ -38,5 +38,6 @@ public static class OpenApiOptionsExtensions
         });
 
         return options;
+        
     }
 }
