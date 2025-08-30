@@ -1,4 +1,5 @@
 using System.Transactions;
+using AtomCore.ExceptionHandling.RestAPIHandler;
 using AtomCore.i18n;
 using LabAPI.i18nTest;
 
@@ -13,16 +14,19 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddI18n();
 builder.Services.AddTranslations<IMessages>(typeof(AzMessages), typeof(EnMessages));
+builder.Services.AddGlobalExceptionJsonResponseCreator();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+app.UseGlobalExceptionHandler();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

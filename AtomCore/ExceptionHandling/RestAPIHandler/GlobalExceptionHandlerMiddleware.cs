@@ -1,6 +1,7 @@
 ﻿using AtomCore.ExceptionHandling.Exceptions;
 using AtomCore.ExceptionHandling.RestAPIHandler.ResponseCreator;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace AtomCore.ExceptionHandling.RestAPIHandler;
 
@@ -8,10 +9,12 @@ public class GlobalExceptionHandlerMiddleware
 {
     private readonly RequestDelegate _next;
     private readonly IResponseCreator _responseCreator;
-    public GlobalExceptionHandlerMiddleware(RequestDelegate next, IResponseCreator responseCreator)
+    private readonly ILogger<GlobalExceptionHandlerMiddleware> _logger;
+    public GlobalExceptionHandlerMiddleware(RequestDelegate next, IResponseCreator responseCreator, ILogger<GlobalExceptionHandlerMiddleware> logger)
     {
         _next = next;
         _responseCreator = responseCreator;
+        _logger = logger;
     }
 
     public async Task InvokeAsync(HttpContext context)
@@ -22,6 +25,7 @@ public class GlobalExceptionHandlerMiddleware
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, ex.Message);
             var handler = FindHandler(ex);
             await handler;
         }

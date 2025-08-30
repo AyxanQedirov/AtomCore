@@ -1,3 +1,4 @@
+using AtomCore.ExceptionHandling.Exceptions;
 using AtomCore.i18n;
 using LabAPI.i18nTest;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,7 @@ namespace LabAPI.Controllers
         [HttpGet()]
         public IActionResult Get()
         {
+            throw new BusinessException("Salam men biznesem");
             return Ok(_messages.Hello);
         }
     }
