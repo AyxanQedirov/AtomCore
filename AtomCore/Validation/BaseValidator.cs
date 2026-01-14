@@ -42,4 +42,13 @@ public class BaseValidator<T> : AbstractValidator<T>
 
         return false;
     }
+
+    protected bool ContainAtLeastOneSpecialCharacter(string text)
+    {
+        foreach (var ch in text)
+            if (char.IsPunctuation(ch) || char.IsSymbol(ch))
+                return true;
+
+        return false;
+    }
 }

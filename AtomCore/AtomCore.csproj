@@ -6,7 +6,7 @@
 		<Nullable>enable</Nullable>
 
 		<PackageId>AtomCore</PackageId>
-		<Version>3.6.0</Version>
+		<Version>3.7.0</Version>
 		<Authors>Aykhan Gadirov</Authors>
 		<Company>Aykhan Gadirov</Company>
 		<Product>AtomCore</Product>
@@ -15,7 +15,7 @@
 		<PackageTags>core, api, common, shared, exception, handling</PackageTags>
 		<RepositoryUrl>https://github.com/AyxanQedirov/Core</RepositoryUrl>
 		<PackageIcon>logo.png</PackageIcon>
-		<PackageReleaseNotes>- Added console logger to exception handler</PackageReleaseNotes>
+		<PackageReleaseNotes>- Added new method in BaseValidation</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -31,7 +31,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6" />
 		<PackageReference Include="Microsoft.OpenApi" Version="1.6.24" />
 		<PackageReference Include="StackExchange.Redis" Version="2.8.31" />
-		<PackageReference Include="System.Linq.Dynamic.Core" Version="1.5.1" />
+		<PackageReference Include="System.Linq.Dynamic.Core" Version="1.7.1" />
 	</ItemGroup>
 
 	<ItemGroup>
