@@ -6,49 +6,38 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using AtomCore.ExceptionHandling.Exceptions;
+using AtomCore.JWT.Options;
+using Microsoft.Extensions.Options;
 
 namespace AtomCore.JWT;
 
-public class JwtTokenHelper
+public class JwtTokenHelper(
+    IOptions<TokenValidationOptions> tokenValidationOpt,
+    IConfiguration configuration,
+    IHttpContextAccessor httpContextAccessor)
 {
-    private readonly IConfiguration _configuration;
-    private readonly IHttpContextAccessor _httpContextAccessor;
-
-    public JwtTokenHelper(IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
-    {
-        _configuration = configuration;
-        _httpContextAccessor = httpContextAccessor;
-    }
+    private readonly IConfiguration _configuration = configuration;
 
     public string CreateToken(params Claim[] claims)
     {
-        string secretKey = _configuration["Jwt:SecretKey"] ??
-                           throw new ArgumentNullException(
-                               "SecretKey was not settd. appsettings.json > Jwt > SecretKey");
-        string expireMinute = _configuration["Jwt:ExpiredDateAsMinute"] ??
-                              throw new ArgumentNullException(
-                                  "ExpiredDateAsMinute was not settd. appsettings.json > Jwt > ExpiredDateAsMinute");
-        string audience = _configuration["Jwt:Audience"] ??
-                          throw new ArgumentNullException("Audience was not settd. appsettings.json > Jwt > Audience");
-        string issuer = _configuration["Jwt:Issuer"] ??
-                        throw new ArgumentNullException("Issuer was not settd. appsettings.json > Jwt > Issuer");
-
-
-        return CreateToken(secretKey, int.Parse(expireMinute), audience, issuer, claims);
+        return CreateToken(tokenValidationOpt.Value, claims);
     }
 
     public string CreateToken(ITokenOption tokenOption, params Claim[] claims)
     {
-        return CreateToken(tokenOption.SecretKey, int.Parse(tokenOption.ExpiredDateAsMinute), tokenOption.Audience,
+        return CreateToken(
+            tokenOption.SecretKey,
+            tokenOption.ExpireTime,
+            tokenOption.Audience,
             tokenOption.Issuer, claims);
     }
 
-    public string CreateToken(string secretKey, int expireAdditionAsMinute, string audience, string issuer,
+    private string CreateToken(string secretKey, TimeSpan expireTime, string audience, string issuer,
         params Claim[] claims)
     {
         SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(secretKey));
         SigningCredentials signingCredentials = new(securityKey, SecurityAlgorithms.HmacSha512);
-        DateTime expirationDate = DateTime.Now.AddMinutes(expireAdditionAsMinute);
+        DateTime expirationDate = DateTime.Now.Add(expireTime);
 
 
         JwtSecurityToken jwtSecurityToken = new(
@@ -64,26 +53,13 @@ public class JwtTokenHelper
         return jwtSecurityTokenHandler.WriteToken(jwtSecurityToken);
     }
 
-    public bool ValidateToken(string rawToken, bool checkExpiration = true)
-    {
-        string secretKey = _configuration["Jwt:SecretKey"] ??
-                           throw new ArgumentNullException(
-                               "SecretKey was not settd. appsettings.json > Jwt > SecretKey");
-        string audience = _configuration["Jwt:Audience"] ??
-                          throw new ArgumentNullException("Audience was not settd. appsettings.json > Jwt > Audience");
-        string issuer = _configuration["Jwt:Issuer"] ??
-                        throw new ArgumentNullException("Issuer was not settd. appsettings.json > Jwt > Issuer");
-
-        return ValidateToken(rawToken, secretKey, audience, issuer, checkExpiration);
-    }
-
     public bool ValidateToken(ITokenOption tokenOption, string rawToken, bool checkExpiration = true)
     {
         return ValidateToken(rawToken, tokenOption.SecretKey, tokenOption.Audience, tokenOption.Issuer,
             checkExpiration);
     }
 
-    public bool ValidateToken(string rawToken, string secretKey, string audience, string issuer,
+    private bool ValidateToken(string rawToken, string secretKey, string audience, string issuer,
         bool checkExpiration = true)
     {
         if (rawToken is null)
@@ -138,7 +114,7 @@ public class JwtTokenHelper
 
     public string? GetCurrentToken()
     {
-        string? rawToken = _httpContextAccessor.HttpContext?.Request.Headers.Authorization;
+        string? rawToken = httpContextAccessor.HttpContext?.Request.Headers.Authorization;
 
         return rawToken;
     }

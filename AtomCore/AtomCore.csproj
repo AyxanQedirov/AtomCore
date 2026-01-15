@@ -6,7 +6,7 @@
 		<Nullable>enable</Nullable>
 
 		<PackageId>AtomCore</PackageId>
-		<Version>3.7.0</Version>
+		<Version>3.8.0</Version>
 		<Authors>Aykhan Gadirov</Authors>
 		<Company>Aykhan Gadirov</Company>
 		<Product>AtomCore</Product>
@@ -15,7 +15,7 @@
 		<PackageTags>core, api, common, shared, exception, handling</PackageTags>
 		<RepositoryUrl>https://github.com/AyxanQedirov/Core</RepositoryUrl>
 		<PackageIcon>logo.png</PackageIcon>
-		<PackageReleaseNotes>- Added new method in BaseValidation</PackageReleaseNotes>
+		<PackageReleaseNotes>- Refactored JWT options section</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>

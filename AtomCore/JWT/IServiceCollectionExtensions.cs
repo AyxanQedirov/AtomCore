@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AtomCore.JWT.Options;
+using AtomCore.JWT.Pipeline;
 using MediatR;
 
 namespace AtomCore.JWT;
@@ -26,7 +28,11 @@ public static class IServiceCollectionExtensions
     {
         IConfiguration config=services.BuildServiceProvider().GetService<IConfiguration>()!;
         
-        services.Configure<TokenValidationOptions>(config.GetSection(accessTokenConfigSectionName));
+        services.AddOptions<TokenValidationOptions>()
+            .Bind(config.GetSection(accessTokenConfigSectionName))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+        
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(TokenCheckPipeline<,>));
         
         return services;

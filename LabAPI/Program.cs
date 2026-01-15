@@ -1,6 +1,8 @@
+using System.Reflection;
 using System.Transactions;
 using AtomCore.ExceptionHandling.RestAPIHandler;
 using AtomCore.i18n;
+using AtomCore.JWT;
 using LabAPI.i18nTest;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddI18n();
 builder.Services.AddTranslations<IMessages>(typeof(AzMessages), typeof(EnMessages));
 builder.Services.AddGlobalExceptionJsonResponseCreator();
+
+builder.Services.AddTokenCheckPipeline("AccessToken");
+builder.Services.AddJwtHelper();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
 var app = builder.Build();
 

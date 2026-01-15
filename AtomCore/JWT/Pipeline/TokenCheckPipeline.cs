@@ -1,9 +1,9 @@
-﻿using MediatR;
-using System.Security.Authentication;
+﻿using AtomCore.JWT.Options;
+using MediatR;
 using Microsoft.Extensions.Options;
 using AuthenticationException = AtomCore.ExceptionHandling.Exceptions.AuthenticationException;
 
-namespace AtomCore.JWT;
+namespace AtomCore.JWT.Pipeline;
 
 public class TokenCheckPipeline<TRequest, TResponse>(JwtTokenHelper jwtTokenHelper, IOptions<TokenValidationOptions> options) : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
