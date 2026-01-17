@@ -12,12 +12,15 @@ public class TokenCheckRequest : IRequest<TokenCheckResponse>
     public string Token { get; set; }
 }
 
-public class TokenCheckHandler(JwtTokenHelper tokenHelper, IOptions<TokenValidationOptions> tokenOpt)
+public class TokenCheckHandler(
+    JwtTokenHelper tokenHelper,
+    IOptions<TokenValidationOptions> tokenOpt,
+    IOptions<XTokenOption> xOpt)
     : IRequestHandler<TokenCheckRequest, TokenCheckResponse>
 {
     public async Task<TokenCheckResponse> Handle(TokenCheckRequest request, CancellationToken cancellationToken)
     {
-        var isValid = tokenHelper.ValidateToken(tokenOpt.Value, request.Token);
+        var isValid = tokenHelper.ValidateToken(xOpt.Value, request.Token);
 
         return new()
         {

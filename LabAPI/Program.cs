@@ -3,6 +3,7 @@ using System.Transactions;
 using AtomCore.ExceptionHandling.RestAPIHandler;
 using AtomCore.i18n;
 using AtomCore.JWT;
+using LabAPI;
 using LabAPI.i18nTest;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,11 @@ builder.Services.AddGlobalExceptionJsonResponseCreator();
 builder.Services.AddTokenCheckPipeline("AccessToken");
 builder.Services.AddJwtHelper();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
+builder.Services.AddOptions<XTokenOption>()
+    .Bind(builder.Configuration.GetSection("XToken"))
+    .ValidateDataAnnotations()
+    .ValidateOnStart();
 
 var app = builder.Build();
 
