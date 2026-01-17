@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LabAPI.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("[controller]/[action]")]
 public class TokenTestController(ISender sender) : ControllerBase
 {
     [HttpGet]
@@ -12,6 +12,13 @@ public class TokenTestController(ISender sender) : ControllerBase
     {
         var result = await sender.Send(request);
 
+        return Ok(result);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Check([FromBody] TokenCheckRequest request)
+    {
+        var result = await sender.Send(request);
         return Ok(result);
     }
 }

@@ -37,7 +37,7 @@ public class JwtTokenHelper(
     {
         SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(secretKey));
         SigningCredentials signingCredentials = new(securityKey, SecurityAlgorithms.HmacSha512);
-        DateTime expirationDate = DateTime.Now.Add(expireTime);
+        DateTime expirationDate = DateTime.UtcNow.Add(expireTime);
 
 
         JwtSecurityToken jwtSecurityToken = new(
@@ -45,7 +45,7 @@ public class JwtTokenHelper(
             audience: audience,
             issuer: issuer,
             expires: expirationDate,
-            notBefore: DateTime.Now,
+            notBefore: DateTime.UtcNow,
             signingCredentials: signingCredentials
         );
 
