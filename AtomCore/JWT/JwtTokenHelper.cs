@@ -77,6 +77,7 @@ public class JwtTokenHelper(
                 ValidateIssuerSigningKey = true,
                 ValidateIssuer = true,
                 ValidateAudience = true,
+                RequireExpirationTime = checkExpiration,
                 ValidateLifetime = checkExpiration,
                 IssuerSigningKey = securityKey,
                 ValidIssuer = issuer,
