@@ -7,15 +7,15 @@ namespace AtomCore.ExceptionHandling.RestAPIHandler.ProblemDetails;
 public class ValidationExceptionProblemDetail : BaseProblemDetail
 {
     public Dictionary<string, List<string>> Errors { get; set; }
+
     public ValidationExceptionProblemDetail()
     {
-
     }
 
     public ValidationExceptionProblemDetail(ValidationException exception)
     {
-        Type=exception.GetType().Name;
-        StatusCode= (int)HttpStatusCode.UnprocessableEntity;
+        Type = exception.GetType().Name;
+        StatusCode = (int)HttpStatusCode.UnprocessableEntity;
         Message = exception.Message;
         TraceId = exception.TraceId;
         Errors = exception.Errors;
@@ -23,6 +23,9 @@ public class ValidationExceptionProblemDetail : BaseProblemDetail
 
     public override string ToJsonString()
     {
-        return JsonSerializer.Serialize(this);
+        return JsonSerializer.Serialize(this, new JsonSerializerOptions()
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        });
     }
 }
