@@ -18,7 +18,10 @@ public class BaseProblemDetail
 
     public virtual string ToJsonString()
     {
-        return JsonSerializer.Serialize(this);
+        return JsonSerializer.Serialize(this, new JsonSerializerOptions()
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        });
     }
 
     public virtual string ToXMLString()

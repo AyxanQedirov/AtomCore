@@ -6,7 +6,7 @@
 		<Nullable>enable</Nullable>
 
 		<PackageId>AtomCore</PackageId>
-		<Version>3.10.1</Version>
+		<Version>3.10.2</Version>
 		<Authors>Aykhan Gadirov</Authors>
 		<Company>Aykhan Gadirov</Company>
 		<Product>AtomCore</Product>
@@ -15,7 +15,7 @@
 		<PackageTags>core, api, common, shared, exception, handling</PackageTags>
 		<RepositoryUrl>https://github.com/AyxanQedirov/Core</RepositoryUrl>
 		<PackageIcon>logo.png</PackageIcon>
-		<PackageReleaseNotes>- Fixed bug about jwt expiration check</PackageReleaseNotes>
+		<PackageReleaseNotes>- Changed json key naming convention</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
