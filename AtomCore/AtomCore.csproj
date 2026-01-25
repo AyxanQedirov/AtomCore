@@ -6,7 +6,7 @@
 		<Nullable>enable</Nullable>
 
 		<PackageId>AtomCore</PackageId>
-		<Version>3.10.2</Version>
+		<Version>3.10.3</Version>
 		<Authors>Aykhan Gadirov</Authors>
 		<Company>Aykhan Gadirov</Company>
 		<Product>AtomCore</Product>
@@ -15,7 +15,7 @@
 		<PackageTags>core, api, common, shared, exception, handling</PackageTags>
 		<RepositoryUrl>https://github.com/AyxanQedirov/Core</RepositoryUrl>
 		<PackageIcon>logo.png</PackageIcon>
-		<PackageReleaseNotes>- Changed json key naming convention</PackageReleaseNotes>
+		<PackageReleaseNotes>- Changed default language header</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>

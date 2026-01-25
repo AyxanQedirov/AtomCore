@@ -25,7 +25,7 @@ public static class IServiceCollectionExtensions
         return services;
     }
 
-    public static IServiceCollection AddI18n(this IServiceCollection services, string defaultLangCode = "en", string headerKey = "lang")
+    public static IServiceCollection AddI18n(this IServiceCollection services, string defaultLangCode = "en", string headerKey = "Accept-Language")
     {
         services.AddHttpContextAccessor();
         services.AddSingleton(new I18nConfig(defaultLangCode, headerKey));
